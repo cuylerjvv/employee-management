@@ -1,0 +1,11 @@
+.shiftlist-week-div {
+    background-color: cadetblue;
+    padding: 5px;
+}
+
+.dates {
+    display: flex;
+}
+.days-div {
+    display: flex;
+}

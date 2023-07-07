@@ -1,0 +1,25 @@
+.modal {
+    border: 1px solid #dd1d21;
+    border-radius: 4px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(187, 187, 187);
+    padding: 0;
+    width: 240px;
+    z-index: 10;
+}
+ 
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(134, 134, 134, 0.75);
+    z-index: 10;
+}
+.un-clickable {
+    pointer-events: none;
+}
