@@ -41,7 +41,7 @@ The shift lists are stored in a MongoDB database.
 ![shift-list-page](./frontend/src/images/FMS-Shift-lists.png)
 
 Wages page: 
-
+ 
 On the wages page you can see the calculated wages of each employee for the relevant shift list. 
 
 ![wages-page](./frontend/src/images/FMS-Wages.png)
