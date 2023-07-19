@@ -428,7 +428,7 @@ function WagesPage() {
                                     component="h2"
                                     textAlign='center'
                                 >
-                                    Something went wrong!
+                                    Something went wrong! ......
                                 </Typography>
                                 <Button
                                     sx={{

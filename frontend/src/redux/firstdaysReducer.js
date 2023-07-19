@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getFirstdays = createAsyncThunk('firstdays/getFirstdays', async (location) => {
     console.log(location + " firstdays reducer")
-    const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/${location}`);
+    const response = await fetch(`http://localhost:5000/${location}`);
     const responseData = await response.json();
     console.log(responseData)
     console.log(responseData.firstdays)
@@ -10,7 +10,7 @@ export const getFirstdays = createAsyncThunk('firstdays/getFirstdays', async (lo
 })
 
 const firstdaysSlice = createSlice({
-    name: "firstdays",
+    name: "firstdays", 
     initialState: {
         loading: false,
         firstdays: [],

@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 
 import WageInfoModal from './WageInfoModal';
 
+
+
 function WagesTemplate(props) {
   console.log("Wages template" + props.firstday)
   const location = useParams().location
@@ -23,7 +25,7 @@ function WagesTemplate(props) {
   };
 
   const { data } = useQuery(["Wages"], async () => {
-    const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/${location}/wages/${props.firstday}`);
+    const response = await fetch(`http://localhost:5000/${location}/wages/${props.firstday}`);
     const data = await response.json();
     console.log(data)
     return data

@@ -5,7 +5,7 @@ import { useHttpClient } from '../../../Hooks/http-hook';
 import { Box } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Button, Container, CircularProgress } from '@mui/material';
-import { getShiftlists } from '../../../redux/shiftlistReducer';
+import { resetStore, getShiftlists } from '../../../redux/shiftlistReducer';
 import ShiftlistTemplateDixie from './ShiftlistTemplateDixie';
 import ShiftlistTemplateGazelle from './ShiftlistTemplateGazelle';
 import './ShiftlistTemplate.css'
@@ -28,7 +28,6 @@ function ShiftlistTemplate() {
     const navigate = useNavigate();
 
     const deleteHandler = async (id) => {
-        alert("Week deleted: " + id)
         const url = process.env.REACT_APP_BACKEND_URL + `/${params.location}/shiftlist`;
         try {
             await sendRequest(
@@ -42,6 +41,7 @@ function ShiftlistTemplate() {
                 }
             )
             addDeleted(id)
+            dispatch(resetStore());
             navigate(`/`)
         } catch (error) {
             console.log(error);

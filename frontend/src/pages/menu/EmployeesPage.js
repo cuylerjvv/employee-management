@@ -25,7 +25,7 @@ const EmployeesPage = () => {
     useEffect(() => {
         const request = async () => {
             setIsLoading(true)
-            const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/${params.location}/employees`);
+            const response = await fetch(`http://localhost:5000/${params.location}/employees`);
             const responseData = await response.json();
             console.log(responseData);
             setEmployeesList(responseData.employee)

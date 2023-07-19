@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Box } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Button } from '@mui/material';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight'; 
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { Divider } from '@mui/material';
 import { Modal } from '@mui/material';

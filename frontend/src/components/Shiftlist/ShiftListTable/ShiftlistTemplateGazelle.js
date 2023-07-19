@@ -21,7 +21,8 @@ function ShiftlistTemplateGazelle(props) {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
     const { loading, shiftlist } = useSelector((state) => state.shiftlist)
-    const [shiftlistsListIndex, setShiftlistsListIndex] = useState()
+    const { length } = useSelector((state) => state.firstdays)
+    const [shiftlistsListIndex, setShiftlistsListIndex] = useState(length - 1)
     const [isLoading, setIsLoading] = useState(true)
     const [open, setOpen] = useState(false);
 
@@ -57,27 +58,26 @@ function ShiftlistTemplateGazelle(props) {
         // console.log(shiftlistsListIndex)
     }
 
-    useEffect(() => {
-        console.log(shiftlist.length)
-        if (shiftlist !== undefined && shiftlist.length !== 0) {
-            setShiftlistsListIndex(shiftlist.length - 1)
-            console.log("Setting shiftlist index")
-        } else {
-            console.log("Error with shiftlist index")
-        }
-        setIsLoading(false)
-    }, [shiftlist])
+    // useEffect(() => {
+    //     console.log(shiftlist.length)
+    //     if (shiftlist !== undefined && shiftlist.length !== 0) {
+    //         setShiftlistsListIndex(length - 1)
+    //         console.log("Setting shiftlist index")
+    //     } else {
+    //         console.log("Error with shiftlist index")
+    //     }
+    //     setIsLoading(false)
+    // }, [shiftlist])
 
-    console.log(shiftlist)
-    console.log(shiftlistsListIndex)
 
     let year;
     let month;
     let day;
     let date;
 
-    if (shiftlistsListIndex !== undefined) {
-        const stringNumber = shiftlist[shiftlistsListIndex].firstDay.toString();
+    if (shiftlistsListIndex !== undefined && shiftlist.length !== 0) {
+        console.log(shiftlist[shiftlistsListIndex]?.firstDay)
+        const stringNumber = shiftlist[shiftlistsListIndex]?.firstDay?.toString();
         const type = typeof stringNumber;
         console.log(type)
         year = stringNumber.slice(0, 4)
@@ -89,8 +89,10 @@ function ShiftlistTemplateGazelle(props) {
 
         date = day + " " + months[month - 1] + " " + year
         console.log(date)
-
     }
+
+    console.log(shiftlist)
+    console.log(length)
 
 
     return (
@@ -141,7 +143,7 @@ function ShiftlistTemplateGazelle(props) {
                             {shiftlist[shiftlistsListIndex] && shiftlist[shiftlistsListIndex].firstDay ? (
                                 <h3>Week start date: {date}</h3>
                             ) : (
-                                <h1>Default Value</h1>
+                                <h3>Default Value</h3>
                             )}
                         </Button>
                         <Button
@@ -172,7 +174,7 @@ function ShiftlistTemplateGazelle(props) {
                             m: '2rem'
                         }}
                     >
-                        {shiftlist && shiftlist[shiftlistsListIndex].days.map((day, index) => (
+                        {shiftlist && shiftlist[shiftlistsListIndex]?.days?.map((day, index) => (
 
                             // DAY BOX
                             <Box
@@ -315,7 +317,7 @@ function ShiftlistTemplateGazelle(props) {
                                         <Typography></Typography>
                                     )}
                                 </Box>
-                                
+
                             </Box>))}
                     </Box>
                     <Box
@@ -443,18 +445,18 @@ function ShiftlistTemplateGazelle(props) {
                     </Modal>
 
                 </Box>) : (
-                
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                
-                            }}
-                        >
-                            <CircularProgress />
-                        </Box>
-                    
-                )
+
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+
+                    }}
+                >
+                    <CircularProgress />
+                </Box>
+
+            )
             }
 
 

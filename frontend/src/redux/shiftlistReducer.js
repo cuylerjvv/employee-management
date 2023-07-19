@@ -2,12 +2,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getShiftlists = createAsyncThunk('shiftlists/getShiftlists', async (location) => {
     console.log(location + " shiftlist reducer")
-    const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/${location}/shiftlist`);
+    const response = await fetch(`http://localhost:5000/${location}/shiftlist`);
     const responseData = await response.json();
     console.log(responseData)
     console.log(responseData.shiftlist)
     return responseData.shiftlist
 })
+
+export const resetStore = () => {
+    return {
+        type: 'RESET_STORE'
+    };
+};
 
 const shiftlistSlice = createSlice({
     name: "shiftlist",
@@ -29,8 +35,14 @@ const shiftlistSlice = createSlice({
             })
             .addCase(getShiftlists.rejected, (state, action) => {
                 state.loading = false;
+            })
+            .addCase(resetStore, (state, action) => {
+                return {
+                    ...state,
+                    shiftlist: [] 
+                };
             });
-    }
+}
 })
 
 
